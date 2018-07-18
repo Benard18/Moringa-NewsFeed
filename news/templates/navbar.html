@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark .navbar-expand{-sm|-md|-lg|-xl} .fixed-top">
+      <div class="container-fluid">
+
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">The Moringa Tribune</a>
+        </div>
+
+        <div class="navbar-right col-sm-5 col-md-5">
+          <form class="navbar-form" role="search" action="{% url 'search_results' %}">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search article..." name="article">
+                <div class="input-group-btn">
+                  <button class="btn btn-outline-warning">Search</button>
+                </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="navbar-right col-sm-3 col-md-3">
+        {% if user.is_authenticated %}
+        <li class="nav-item dropdown btn btn-sm btn-outline-warning">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Account
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Home</a>
+            <a class="dropdown-item" href="/accounts/password/change">Change Password</a>
+            <a class="dropdown-item" href="{% url 'newArticle' %}">Create Article</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/logout">Log out</a>
+          </div>
+        </li>
+        {% else %}
+        <li class="nav-item btn btn-sm btn-outline-warning">
+          <a class='btn btn-default' href="/accounts/login">Login</a>
+        </li>
+        <li class="nav-item btn btn-sm btn-outline-warning">
+          <a class='btn btn-default' href="/accounts/register">Sign Up</a>
+        </li>
+        {% endif %}
+      </div>
+      </div>
+    </nav>
+</body>
+</html>
